@@ -2,16 +2,13 @@ import animal.Animal;
 import animal.Eagle;
 import animal.Shark;
 import animal.Turtle;
+import jdk.dynalink.linker.support.TypeUtilities;
+
+import java.util.PropertyResourceBundle;
 
 public class Main {
     public static void main(String[] args) {
-        Shark shark = new Shark();
-        Turtle turtle = new Turtle();
-        Eagle eagle = new Eagle();
-
-
-
-        Animal [] animals = {shark, turtle, eagle};
+        Animal [] animals = {new Shark(), new Turtle(), new Eagle()};
         for(Animal animal : animals){
             if (animal.getClass().getName().equals("animal.Shark")){
                 ((Shark)animal).attack();
@@ -23,18 +20,19 @@ public class Main {
         }
         System.out.println();
 
-         for (Animal animal : animals){
-             if (animal instanceof Shark){
-                 ((Shark)animal).attack();
-             }else if (animal instanceof Turtle){
-                 ((Turtle)animal).swim();
-             }else if (animal instanceof Eagle){
-                 ((Eagle)animal).fly();
-             }
-         }
-
-
-
+        Animal [] animals1 = {new Shark(), new Turtle(), new Eagle()};
+        for(Animal animal : animals1){
+            if (animal instanceof Shark){
+                ((Shark)animal).attack();
+            }else if(animal instanceof Turtle){
+                ((Turtle)animal).swim();
+            }else if(animal instanceof Eagle){
+                ((Eagle)animal).fly();
+            }
+        }
+        Shark []sharks = {new Shark()};
+        Turtle [] turtles ={new Turtle()};
+        Eagle [] eagles = {new Eagle()};
 
     }
 }
